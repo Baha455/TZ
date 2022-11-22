@@ -62,12 +62,12 @@ public class FirstFragment extends Fragment implements RvAdapter.ItemClick {
         navController = Navigation.findNavController(view);
     }
 
-    public void initRv() {
+    private void initRv() {
         rvAdapter = new RvAdapter(this);
         binding.rvApks.setAdapter(rvAdapter);
     }
 
-    public void makRequest() {
+    private void makRequest() {
         viewModel = new ViewModelProvider(requireActivity()).get(FirstFragmentViewModel.class);
         viewModel.request();
 

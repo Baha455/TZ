@@ -39,6 +39,16 @@ public class RvAdapter extends RecyclerView.Adapter<RvAdapter.ImageViewHolder>{
         holder.binding.getRoot().setOnClickListener(view -> {
             click.onItemCLick(list.get(position));
         });
+        switch (list.get(position).getStatus()){
+            case canInstalled: holder.binding.tvStatus.setText("Можно установить");
+                break;
+            case installed: holder.binding.tvStatus.setText("Установлено");
+                break;
+            case downloaded: holder.binding.tvStatus.setText("Скачано");
+                break;
+            case haveUpdated: holder.binding.tvStatus.setText("Есть обновление");
+                break;
+        }
     }
 
     @Override
@@ -62,7 +72,6 @@ public class RvAdapter extends RecyclerView.Adapter<RvAdapter.ImageViewHolder>{
         }
 
         void bind(ApksModel apk){
-            //binding.tvName.setText(apk.getTitle());
             switch (apk.getStatus()){
                 case canInstalled: binding.tvStatus.setText("Можно установить");
                 break;
@@ -73,8 +82,6 @@ public class RvAdapter extends RecyclerView.Adapter<RvAdapter.ImageViewHolder>{
                 case haveUpdated: binding.tvStatus.setText("Есть обновление");
                 break;
             }
-            //Picasso.get().load(apk.getLogo50Link()).into(binding.logo);
-
         }
     }
 

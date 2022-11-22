@@ -3,7 +3,6 @@ package com.example.tz.di;
 import com.example.tz.data.Api;
 import com.example.tz.data.Repository;
 
-import javax.inject.Inject;
 import javax.inject.Singleton;
 
 import dagger.Module;

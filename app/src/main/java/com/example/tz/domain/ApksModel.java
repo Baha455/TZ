@@ -28,7 +28,6 @@ public class ApksModel implements Serializable {
         this.logo200Link = logo200Link;
         this.title = title;
         this.description = description;
-        //this.status = status;
     }
 
     public String getLink() {
@@ -47,10 +46,6 @@ public class ApksModel implements Serializable {
         return logo50Link;
     }
 
-    public String getLogo200Link() {
-        return logo200Link;
-    }
-
     public String getTitle() {
         return title;
     }
@@ -65,29 +60,6 @@ public class ApksModel implements Serializable {
         this.status = status;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public void setLink(String link) {
-        this.link = link;
-    }
-
-    public void setLogo50Link(String logo50Link) {
-        this.logo50Link = logo50Link;
-    }
-
-    public void setLogo200Link(String logo200Link) {
-        this.logo200Link = logo200Link;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
-    public void setType(String type) {
-        this.type = type;
-    }
 
     public void setVersion(String version) {
         this.version = version;

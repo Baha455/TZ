@@ -1,6 +1,5 @@
 package com.example.tz.presentation.service;
 
-import android.app.Notification;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.app.Service;
@@ -8,7 +7,6 @@ import android.content.Intent;
 import android.os.Build;
 import android.os.IBinder;
 import android.util.Log;
-import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.core.app.NotificationCompat;
@@ -20,12 +18,10 @@ import com.example.tz.data.Repository;
 import com.example.tz.domain.ApksModel;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import javax.inject.Inject;
 
 import dagger.hilt.android.AndroidEntryPoint;
-import kotlin.reflect.KVisibility;
 
 @AndroidEntryPoint
 public class CheckUpdateService extends Service {
@@ -51,9 +47,7 @@ public class CheckUpdateService extends Service {
                 createNotification(apksModels);
             }
         };
-
         liveData.observeForever(observer);
-        logs();
         return Service.START_STICKY;
 
     }
@@ -69,11 +63,7 @@ public class CheckUpdateService extends Service {
         super.onDestroy();
     }
 
-    public void logs() {
-        Log.d("service", "lods:checkUpdate ");
-    }
-
-    public void createNotification(ApksModel apk) {
+    private void createNotification(ApksModel apk) {
 
         NotificationCompat.Builder notificationBuilder = new NotificationCompat.Builder(this, "channelID")
                 .setContentTitle("Поиск обновлений")
@@ -87,13 +77,13 @@ public class CheckUpdateService extends Service {
         notificationManager.notify(notificationId, notificationBuilder.build());
     }
 
-    public void createChannel(NotificationManager notificationManager) {
+    private void createChannel(NotificationManager notificationManager) {
         if (Build.VERSION.SDK_INT < 26) {
             return;
         }
         NotificationChannel channel = new NotificationChannel("channelID", "name",
                 NotificationManager.IMPORTANCE_DEFAULT);
-        channel.setDescription("Hello! This is a notification.");
+        channel.setDescription("");
         notificationManager.createNotificationChannel(channel);
 
     }

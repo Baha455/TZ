@@ -43,7 +43,6 @@ public class SecondFragment extends Fragment {
 
         ApksModel args = (ApksModel) getArguments().getSerializable("data");
         setupData(args);
-        service();
     }
 
     private void download(ApksModel apk) {
@@ -94,6 +93,9 @@ public class SecondFragment extends Fragment {
         binding.btnDownload.setOnClickListener(view -> {
             openApp(args);
         });
+        binding.btnDelete.setOnClickListener(view -> {
+            deleteApp(args);
+        });
     }
 
     private void downloaded(ApksModel args){
@@ -117,12 +119,9 @@ public class SecondFragment extends Fragment {
         startActivity(intent);
     }
 
-    private void service(){
-        binding.btnService.setOnClickListener(view -> {
-            Intent service = new Intent(requireContext(), CheckUpdateService.class);
-            requireContext().startService(service);
-        });
+    private void deleteApp(ApksModel apk){
+        Uri packageURI = Uri.parse("package:"+apk.getType());
+        Intent uninstallIntent = new Intent(Intent.ACTION_DELETE, packageURI);
+        startActivity(uninstallIntent);
     }
-
-
 }
